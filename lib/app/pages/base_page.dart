@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 
-import 'company/company_page.dart';
 import 'home/home_page.dart';
 import 'profile/profile_page.dart';
 
@@ -26,7 +25,6 @@ class _BasePageState extends State<BasePage> {
           controller: pageController,
           children: const [
             HomePage(),
-            CompanyPage(),
             ProfilePage(),
           ],
         ),
@@ -46,10 +44,6 @@ class _BasePageState extends State<BasePage> {
             BottomNavigationBarItem(
               icon: Icon(Icons.home_outlined),
               label: 'Home',
-            ),
-            BottomNavigationBarItem(
-              icon: Icon(Icons.comment),
-              label: 'Empresas',
             ),
             BottomNavigationBarItem(
               icon: Icon(Icons.person_outline),
