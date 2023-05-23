@@ -1,3 +1,4 @@
+import 'package:avalie/app/repositories/company_repository.dart';
 import 'package:get/get.dart';
 
 import '../controllers/auth_controller.dart';
@@ -12,5 +13,6 @@ class AppBinding extends Bindings {
     Get.put(AppUtils());
     Get.lazyPut(() => AuthRepository(httpManager: Get.find(), appUtils: Get.find()));
     Get.put(AuthController(repository: Get.find(), appUtils: Get.find()));
+    Get.lazyPut(() => CompanyRepository(httpManager: Get.find(), appUtils: Get.find()));
   }
 }
