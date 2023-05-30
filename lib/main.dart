@@ -3,9 +3,11 @@ import 'package:get/get.dart';
 
 import 'app/bindings/app_binding.dart';
 import 'app/core/config/app_colors.dart';
-import 'app/pages/base_page.dart';
+import 'app/core/routes/app_routes_pages.dart';
 
 void main() {
+  WidgetsFlutterBinding.ensureInitialized();
+
   runApp(const MyApp());
 }
 
@@ -19,7 +21,7 @@ class MyApp extends StatelessWidget {
       theme: ThemeData(
         primaryColor: AppColors.primary,
         appBarTheme: const AppBarTheme(
-          color: AppColors.primaryDark,
+          color: AppColors.background,
           centerTitle: true,
           iconTheme: IconThemeData(color: Colors.white),
           titleTextStyle: TextStyle(color: Colors.white),
@@ -28,9 +30,9 @@ class MyApp extends StatelessWidget {
       ),
       debugShowCheckedModeBanner: false,
       initialBinding: AppBinding(),
-      //initialRoute: AppRoutes.splash,
-      //getPages: AppPages.pages,
-      home: const BasePage(),
+      initialRoute: AppRoutes.splash,
+      getPages: AppPages.pages,
+      //home: const BasePage(),
     );
   }
 }

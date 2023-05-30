@@ -18,11 +18,11 @@ abstract class AppPages {
     ),
     GetPage(
       name: AppRoutes.login,
-      page: () => const LoginPage(),
+      page: () => LoginPage(),
     ),
     GetPage(
       name: AppRoutes.register,
-      page: () => const RegisterPage(),
+      page: () => RegisterPage(),
     ),
     GetPage(
       name: AppRoutes.home,
