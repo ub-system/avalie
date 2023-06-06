@@ -3,17 +3,20 @@ import 'package:get/get.dart';
 
 import '../../core/config/app_colors.dart';
 import '../../controllers/auth_controller.dart';
-import '../../core/routes/app_routes_pages.dart';
 import '../../core/services/validators.dart';
 import '../../core/widgets/text_field_widget.dart';
 
 class RegisterPage extends StatelessWidget {
   RegisterPage({Key? key}) : super(key: key);
 
+
   final _formKey = GlobalKey<FormState>();
+  final nameTExtController = TextEditingController();
   final emailTExtController = TextEditingController();
   final passwordTExtController = TextEditingController();
   final passwordConfirmedController = TextEditingController();
+
+  final controller = Get.find<AuthController>();
 
   @override
   Widget build(BuildContext context) {
@@ -66,10 +69,13 @@ class RegisterPage extends StatelessWidget {
                         children: [
                           // Email
                           TextFieldWidget(
-                            controller: emailTExtController,
+                            controller: nameTExtController,
                             icon: Icons.person,
                             label: 'Nome',
                             validator: nameValidator,
+                            onSaved: (value) {
+                              controller.user.name = value;
+                            },
                           ),
 
                           // Email
@@ -78,6 +84,9 @@ class RegisterPage extends StatelessWidget {
                             icon: Icons.email,
                             label: 'Email',
                             validator: emailValidator,
+                            onSaved: (value) {
+                              controller.user.email = value;
+                            },
                           ),
 
                           // Senha
@@ -87,6 +96,9 @@ class RegisterPage extends StatelessWidget {
                             label: 'Senha',
                             isSecret: true,
                             validator: passwordValidator,
+                            onSaved: (value) {
+                              controller.user.password = value;
+                            },
                           ),
 
                           // Senha
@@ -115,11 +127,12 @@ class RegisterPage extends StatelessWidget {
                                         FocusScope.of(context).unfocus();
 
                                         if (_formKey.currentState!.validate()) {
-                                          String email = emailTExtController.text;
+                                          _formKey.currentState!.save();
+
                                           String password = passwordTExtController.text;
                                           String passwordConfirmed = passwordConfirmedController.text;
                                           if(password == passwordConfirmed){
-                                            controller.signIn(email: email, password: password);
+                                            controller.signUp();
                                           }else{
                                             controller.appUtils.showToast(message: "Senha de confirmação está diferente", isError: true);
                                           }
@@ -128,7 +141,7 @@ class RegisterPage extends StatelessWidget {
                                 child: controller.isLoading.value == true
                                     ? const CircularProgressIndicator(backgroundColor: Colors.white)
                                     : const Text(
-                                        'ENTRAR',
+                                        'Cadastrar',
                                         style: TextStyle(fontSize: 18),
                                       ),
                               );
@@ -178,10 +191,23 @@ class RegisterPage extends StatelessWidget {
                         color: Colors.white,
                       ),
                     ),
-                    onPressed: () {
-                      Get.toNamed(AppRoutes.register);
-                    },
-                    child: const Text('Criar uma conta', style: TextStyle(fontSize: 18, color: Colors.white)),
+                                onPressed: controller.isLoading.value == true
+                                    ? null
+                                    : () {
+                                        FocusScope.of(context).unfocus();
+                                        if (_formKey.currentState!.validate()) {
+                                          _formKey.currentState!.save();
+
+                                          controller.signUp();
+                                          //print(controller.user);
+                                        }
+                                      },
+                                  child: controller.isLoading.value == true
+                                    ? const CircularProgressIndicator(backgroundColor: AppColors.primary)
+                                    : const Text(
+                                        'Login',
+                                        style: TextStyle(fontSize: 18),
+                                      ),
                   ),
                 ),
               ],

@@ -28,6 +28,8 @@ class AuthController extends GetxController {
   Future signUp() async {
     isLoading.value = true;
 
+    print(user);
+
     ApiResult<UserModel> result = await repository.signUp(user);
     if (!result.isError) {
       user = result.data!;
