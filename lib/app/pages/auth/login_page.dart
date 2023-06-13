@@ -19,17 +19,8 @@ class LoginPage extends StatelessWidget {
     final size = MediaQuery.of(context).size;
 
     return Scaffold(
+      backgroundColor: AppColors.background,
       body: Container(
-        decoration: const BoxDecoration(
-          gradient: LinearGradient(
-            begin: Alignment.topLeft,
-            end: Alignment.bottomRight,
-            colors: [
-              AppColors.primary,
-              AppColors.background,
-            ],
-          ),
-        ),
         child: SingleChildScrollView(
           child: SizedBox(
             height: size.height,
@@ -41,124 +32,95 @@ class LoginPage extends StatelessWidget {
                   child: Column(
                     mainAxisSize: MainAxisSize.min,
                     children: [
-                      Image.asset("assets/images/img-logo.png", scale: 1),
+                      Image.asset(
+                        "assets/images/img-login.png",
+                      ),
                     ],
                   ),
                 ),
 
                 // Formulário
                 Padding(
-                  padding: const EdgeInsets.all(16.0),
-                  child: Container(
-                    padding: const EdgeInsets.symmetric(
-                      horizontal: 32,
-                      vertical: 40,
-                    ),
-                    decoration: const BoxDecoration(
-                      color: Colors.white,
-                      borderRadius: BorderRadius.all(Radius.circular(20)),
-                    ),
-                    child: Form(
-                      key: _formKey,
-                      child: Column(
-                        crossAxisAlignment: CrossAxisAlignment.stretch,
-                        children: [
-                          // Email
-                          TextFieldWidget(
-                            controller: emailTExtController,
-                            icon: Icons.email,
-                            label: 'Email',
-                            validator: emailValidator,
-                          ),
+                  padding: const EdgeInsets.all(29.0),
+                  child: Form(
+                    key: _formKey,
+                    child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.stretch,
+                      children: [
+                        // Email
+                        TextFieldWidget(
+                          controller: emailTExtController,
+                          icon: Icons.email,
+                          label: 'Email',
+                          validator: emailValidator,
+                        ),
 
-                          // Senha
-                          TextFieldWidget(
-                            controller: passwordTExtController,
-                            icon: Icons.lock,
-                            label: 'Senha',
-                            isSecret: true,
-                            validator: passwordValidator,
-                          ),
+                        // Senha
+                        TextFieldWidget(
+                          controller: passwordTExtController,
+                          icon: Icons.lock,
+                          label: 'Senha',
+                          isSecret: true,
+                          validator: passwordValidator,
+                        ),
 
-                          // Botão de entrar
-                          SizedBox(
-                            height: 50,
-                            child: GetX<AuthController>(builder: (controller) {
-                              return ElevatedButton(
-                                style: ElevatedButton.styleFrom(
-                                  backgroundColor: AppColors.primary,
-                                  shape: RoundedRectangleBorder(
-                                    borderRadius: BorderRadius.circular(18),
-                                  ),
+                        // Botão de entrar
+                        SizedBox(
+                          height: 50,
+                          child: GetX<AuthController>(builder: (controller) {
+                            return ElevatedButton(
+                              style: ElevatedButton.styleFrom(
+                                backgroundColor: AppColors.primary,
+                                shape: RoundedRectangleBorder(
+                                  borderRadius: BorderRadius.circular(9),
                                 ),
-                                onPressed: controller.isLoading.value == true
-                                    ? null
-                                    : () {
-                                        FocusScope.of(context).unfocus();
+                              ),
+                              onPressed: controller.isLoading.value == true
+                                  ? null
+                                  : () {
+                                      FocusScope.of(context).unfocus();
 
-                                        if (_formKey.currentState!.validate()) {
-                                          String email = emailTExtController.text;
-                                          String password = passwordTExtController.text;
-                                          controller.signIn(email: email, password: password);
-                                        }
-                                      },
-                                child: controller.isLoading.value == true
-                                    ? const CircularProgressIndicator(backgroundColor: Colors.white)
-                                    : const Text(
-                                        'ENTRAR',
-                                        style: TextStyle(fontSize: 18),
-                                      ),
-                              );
-                            }),
-                          ),
-                        ],
-                      ),
+                                      if (_formKey.currentState!.validate()) {
+                                        String email = emailTExtController.text;
+                                        String password =
+                                            passwordTExtController.text;
+                                        controller.signIn(
+                                            email: email, password: password);
+                                      }
+                                    },
+                              child: controller.isLoading.value == true
+                                  ? const CircularProgressIndicator(
+                                      backgroundColor: Colors.white)
+                                  : const Text(
+                                      'Entrar',
+                                      style: TextStyle(fontSize: 16),
+                                    ),
+                            );
+                          }),
+                        ),
+                      ],
                     ),
-                  ),
-                ),
-
-                // Divisor
-                Padding(
-                  padding: const EdgeInsets.only(bottom: 10),
-                  child: Row(
-                    children: [
-                      Expanded(
-                        child: Divider(
-                          color: Colors.grey.withAlpha(90),
-                          thickness: 2,
-                        ),
-                      ),
-                      const Padding(
-                        padding: EdgeInsets.symmetric(horizontal: 15),
-                        child: Text('Ou', style: TextStyle(color: Colors.white)),
-                      ),
-                      Expanded(
-                        child: Divider(
-                          color: Colors.grey.withAlpha(90),
-                          thickness: 2,
-                        ),
-                      ),
-                    ],
                   ),
                 ),
 
                 // Botão criar conta
                 SizedBox(
-                  height: 50,
+                  height: 30,
                   child: OutlinedButton(
                     style: OutlinedButton.styleFrom(
                       shape: RoundedRectangleBorder(
                         borderRadius: BorderRadius.circular(18),
                       ),
-                      side: const BorderSide(
-                        width: 2,
-                        color: Colors.white,
-                      ),
                     ),
                     onPressed: () {
                       Get.toNamed(AppRoutes.register);
                     },
-                    child: const Text('Criar uma conta', style: TextStyle(fontSize: 18, color: Colors.white)),
+                    child: const Text('Não possui conta? Crie uma agora!',
+                        style: TextStyle(
+                          fontSize: 14,
+                          color: AppColors.primaryText,
+                          decoration: TextDecoration.underline,
+                        )),
                   ),
                 ),
               ],

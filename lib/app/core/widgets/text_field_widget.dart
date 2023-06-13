@@ -65,8 +65,13 @@ class _TextFieldWidgetState extends State<TextFieldWidget> {
         onTap: widget.onTap,
         keyboardType: widget.textInputType,
         maxLines: widget.maxLines,
+        style: const TextStyle(
+          color: AppColors.primaryText,
+        ),
         decoration: InputDecoration(
-          prefixIcon: Icon(widget.icon, color: AppColors.background),
+          filled: true,
+          fillColor: AppColors.backgroundComponent,
+          prefixIcon: Icon(widget.icon, color: AppColors.secundaryText),
           suffixIcon: widget.isSecret
               ? IconButton(
                   onPressed: () {
@@ -74,17 +79,21 @@ class _TextFieldWidgetState extends State<TextFieldWidget> {
                       isObscure = !isObscure;
                     });
                   },
-                  icon: Icon(isObscure ? Icons.visibility : Icons.visibility_off, color: AppColors.background),
+                  icon: Icon(
+                      isObscure ? Icons.visibility : Icons.visibility_off,
+                      color: AppColors.secundaryText),
                 )
               : null,
           labelText: widget.label,
-          labelStyle: const TextStyle(color: AppColors.background),
+          labelStyle: const TextStyle(color: AppColors.secundaryText),
           isDense: true,
-          border: widget.border ? OutlineInputBorder(borderRadius: BorderRadius.circular(18.0)) : null,
+          border: widget.border
+              ? OutlineInputBorder(borderRadius: BorderRadius.circular(9))
+              : null,
           focusedBorder: widget.border
               ? OutlineInputBorder(
                   borderSide: const BorderSide(color: AppColors.primary),
-                  borderRadius: BorderRadius.circular(18.0),
+                  borderRadius: BorderRadius.circular(9),
                 )
               : null,
         ),
