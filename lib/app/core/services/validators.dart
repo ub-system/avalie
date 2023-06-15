@@ -53,3 +53,13 @@ String? cpfValidator(String? cpf) {
   }
   return null;
 }
+
+String? noteValidator(int? note) {
+  if (note == null || note.isNaN) {
+    return "Digite uma nota!";
+  }
+  if (note <= 0 || note > 5) {
+    return "Digite uma nota válida!";
+  }
+  return null;
+}

@@ -38,4 +38,25 @@ class CompanyRepository {
       return ApiResult<List<CompanyModel>>(message: message, isError: true);
     }
   }
+
+  Future<ApiResult<CompanyModel>> insert(CompanyModel company) async {
+    const String endpoint = "${Url.base}/company";
+
+    Map<String, dynamic> body = company.toMap();
+
+    final response = await httpManager.request(
+      url: endpoint,
+      method: HttpMethods.post,
+      body: body,
+    );
+
+    if (response['data'] != null) {
+      CompanyModel company = CompanyModel.fromMap(response['data']);
+
+      return ApiResult<CompanyModel>(data: company);
+    } else {
+      String message = response['error'] ?? "Não foi possível fazer o cadastro. Tente novamente!";
+      return ApiResult<CompanyModel>(message: message, isError: true);
+    }
+  }
 }

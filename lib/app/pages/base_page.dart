@@ -1,3 +1,4 @@
+import 'package:avalie/app/pages/home/form_company.dart';
 import 'package:flutter/material.dart';
 
 import 'home/home_page.dart';
@@ -23,9 +24,10 @@ class _BasePageState extends State<BasePage> {
         body: PageView(
           physics: const NeverScrollableScrollPhysics(),
           controller: pageController,
-          children: const [
-            HomePage(),
-            ProfilePage(),
+          children: [
+            const HomePage(),
+            FormCompanyPage(),
+            const ProfilePage(),
           ],
         ),
         bottomNavigationBar: BottomNavigationBar(
@@ -44,6 +46,10 @@ class _BasePageState extends State<BasePage> {
             BottomNavigationBarItem(
               icon: Icon(Icons.home_outlined),
               label: 'Home',
+            ),
+            BottomNavigationBarItem(
+              icon: Icon(Icons.business),
+              label: 'Register Company',
             ),
             BottomNavigationBarItem(
               icon: Icon(Icons.person_outline),
