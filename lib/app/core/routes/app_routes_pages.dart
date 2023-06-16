@@ -15,8 +15,8 @@ abstract class AppPages {
       name: AppRoutes.base,
       page: () => const BasePage(),
       bindings: [
-        CompanyBinding(),
         AssessmentBinding(),
+        CompanyBinding(),
       ]
     ),
     GetPage(

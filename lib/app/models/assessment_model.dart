@@ -25,8 +25,8 @@ class AssessmentModel {
   Map<String, dynamic> toMap() {
     return <String, dynamic>{
       'id': id,
-      'user': user?.toMap(),
-      'company': company?.toMap(),
+      'user_id': user?.id,
+      'company_id': company?.id,
       'note': note,
       'createdAt': createdAt?.millisecondsSinceEpoch,
     };

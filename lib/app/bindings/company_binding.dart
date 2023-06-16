@@ -8,6 +8,6 @@ class CompanyBinding extends Bindings {
   @override
   void dependencies() {
     Get.put(CompanyRepository(httpManager: Get.find(), appUtils: Get.find()));
-    Get.put(CompanyController(auth: Get.find(), repository: Get.find(), appUtils: Get.find()));
+    Get.put(CompanyController(auth: Get.find(), repository: Get.find(), assessmentRepository: Get.find(), appUtils: Get.find()));
   }
 }

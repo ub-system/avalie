@@ -31,9 +31,10 @@ class AssessmentController extends GetxController {
   Future post() async {
     isLoading.value = true;
 
+    String token = auth.user.token!;
     // print(user);
 
-    ApiResult<AssessmentModel> result = await repository.insert(assessment);
+    ApiResult<AssessmentModel> result = await repository.insert(token: token, assessment: assessment);
     if (!result.isError) {
       assessment = result.data!;
       appUtils.showToast(message: "Company cadastrada com sucesso!");

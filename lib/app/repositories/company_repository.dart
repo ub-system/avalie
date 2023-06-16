@@ -39,15 +39,18 @@ class CompanyRepository {
     }
   }
 
-  Future<ApiResult<CompanyModel>> insert(CompanyModel company) async {
+  Future<ApiResult<CompanyModel>> insert({required String token, CompanyModel? company}) async {
     const String endpoint = "${Url.base}/company";
 
-    Map<String, dynamic> body = company.toMap();
+    Map<String, dynamic> body = company!.toMap();
 
     final response = await httpManager.request(
       url: endpoint,
       method: HttpMethods.post,
       body: body,
+      headers: {
+        'Authorization': 'Bearer $token',
+      },
     );
 
     if (response['data'] != null) {

@@ -14,15 +14,18 @@ class AssessmentRepository {
     required this.appUtils,
   });
 
-  Future<ApiResult<AssessmentModel>> insert(AssessmentModel assessment) async {
+  Future<ApiResult<AssessmentModel>> insert({required String token, AssessmentModel? assessment}) async {
     const String endpoint = "${Url.base}/assessment";
 
-    Map<String, dynamic> body = assessment.toMap();
+    Map<String, dynamic> body = assessment!.toMap();
 
     final response = await httpManager.request(
       url: endpoint,
       method: HttpMethods.post,
       body: body,
+      headers: {
+        'Authorization': 'Bearer $token',
+      },
     );
 
     if (response['data'] != null) {

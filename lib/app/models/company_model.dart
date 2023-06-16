@@ -29,7 +29,7 @@ class CompanyModel {
       'branch': branch,
       'city': city,
       'createdAt': createdAt?.millisecondsSinceEpoch,
-      'assessments': assessments!.map((x) => x.toMap()).toList(),
+      'assessments': assessments?.map((x) => x.toMap()).toList(),
     };
   }
 
@@ -40,7 +40,7 @@ class CompanyModel {
       branch: map['branch'] != null ? map['branch'] as String : null,
       city: map['city'] != null ? map['city'] as String : null,
       createdAt: map['createdAt'] != null ? DateTime.fromMillisecondsSinceEpoch(map['createdAt'] as int) : null,
-      assessments: map['assessments'] != null ? List<AssessmentModel>.from((map['assessments'] as List<int>).map<AssessmentModel?>((x) => AssessmentModel.fromMap(x as Map<String,dynamic>),),) : null,
+      assessments: map['assessments'] != null ? List<AssessmentModel>.from((map['assessments'] as List<dynamic>).map<AssessmentModel?>((x) => AssessmentModel.fromMap(x as Map<String,dynamic>),),) : null,
     );
   }
 

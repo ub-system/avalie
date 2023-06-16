@@ -81,7 +81,7 @@ class FormCompanyPage extends StatelessWidget {
                           label: 'Note',
                           textInputType: TextInputType.number,
                           onSaved: (value) {
-                            controllerAssessment.assessment.note = int.tryParse(value!);
+                            controllerCompany.assessment.note = int.tryParse(value!);
                           },
                         ),
 
