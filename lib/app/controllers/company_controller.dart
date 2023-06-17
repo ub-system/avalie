@@ -26,12 +26,12 @@ class CompanyController extends GetxController {
   CompanyModel company = CompanyModel();
   AssessmentModel assessment = AssessmentModel();
 
-  // @override
-  // void onInit() {
-  //   super.onInit();
+  @override
+  void onInit() {
+    super.onInit();
 
-  //   //getCompanies;
-  // }
+    getCompanies();
+  }
 
   Future post() async {
     isLoading.value = true;
@@ -55,6 +55,23 @@ class CompanyController extends GetxController {
       }
 
       Get.offAllNamed(AppRoutes.login);
+    } else {
+      appUtils.showToast(message: result.message!, isError: true);
+    }
+
+    isLoading.value = false;
+  }
+
+  RxList<CompanyModel> listPost = RxList<CompanyModel>([]);
+
+  Future getCompanies() async {
+    isLoading.value = true;
+
+    String token = auth.user.token!;
+
+    ApiResult<List<CompanyModel>> result = await repository.getAll(token: token);
+    if (!result.isError) {
+      listPost.assignAll(result.data!);
     } else {
       appUtils.showToast(message: result.message!, isError: true);
     }
