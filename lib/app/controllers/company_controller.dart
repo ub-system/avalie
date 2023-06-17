@@ -30,7 +30,7 @@ class CompanyController extends GetxController {
   void onInit() {
     super.onInit();
 
-    getCompanies();
+    getCompanies(null);
   }
 
   Future post() async {
@@ -64,7 +64,7 @@ class CompanyController extends GetxController {
 
   RxList<CompanyModel> listPost = RxList<CompanyModel>([]);
 
-  Future getCompanies() async {
+  Future getCompanies(String? filter) async {
     isLoading.value = true;
 
     String token = auth.user.token!;

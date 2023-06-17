@@ -20,7 +20,7 @@ class HomePage extends StatelessWidget {
       body: RefreshIndicator(
         key: _refreshIndicatorKey,
         onRefresh: () async {
-          controller.getCompanies();
+          controller.getCompanies(null);
         },
         child: GetX<CompanyController>(
           init: controller,
