@@ -1,11 +1,10 @@
-import 'package:avalie/app/controllers/company_controller.dart';
-import 'package:avalie/app/core/widgets/search_widget.dart';
-import 'package:avalie/app/models/company_model.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
-import '../../core/config/app_colors.dart';
+import '../../controllers/company_controller.dart';
+import '../../core/widgets/search_widget.dart';
 import '../../core/widgets/company_widget.dart';
+import '../../models/company_model.dart';
 
 class HomePage extends StatelessWidget {
   HomePage({Key? key}) : super(key: key);
@@ -13,6 +12,10 @@ class HomePage extends StatelessWidget {
   final GlobalKey<RefreshIndicatorState> _refreshIndicatorKey =
       GlobalKey<RefreshIndicatorState>();
   final CompanyController controller = Get.find();
+
+  void searchCompanies(String searchTerm) {
+    controller.getCompanies(searchTerm);
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -22,7 +25,9 @@ class HomePage extends StatelessWidget {
       ),
       body: Column(
         children: [
-          const SearchWidget(),
+          SearchWidget(
+            onSearch: searchCompanies,
+          ),
           Expanded(
             child: RefreshIndicator(
               key: _refreshIndicatorKey,

@@ -30,7 +30,7 @@ class CompanyController extends GetxController {
   void onInit() {
     super.onInit();
 
-    getCompanies(null);
+    getCompanies("");
   }
 
   Future post() async {
@@ -69,7 +69,7 @@ class CompanyController extends GetxController {
 
     String token = auth.user.token!;
 
-    ApiResult<List<CompanyModel>> result = await repository.getAll(token: token);
+    ApiResult<List<CompanyModel>> result = await repository.getAll(token: token, filter: filter);
     if (!result.isError) {
       listPost.assignAll(result.data!);
     } else {
