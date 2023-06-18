@@ -27,7 +27,7 @@ class _BasePageState extends State<BasePage> {
           children: [
             HomePage(),
             FormCompanyPage(),
-            const ProfilePage(),
+            ProfilePage(),
           ],
         ),
         bottomNavigationBar: BottomNavigationBar(

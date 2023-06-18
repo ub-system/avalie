@@ -12,8 +12,5 @@ class AppBinding extends Bindings {
     Get.put(AppUtils());
     Get.put(AuthRepository(httpManager: Get.find(), appUtils: Get.find()));
     Get.put(AuthController(repository: Get.find(), appUtils: Get.find()));
-    
-    // Get.lazyPut(() => CompanyRepository(httpManager: Get.find(), appUtils: Get.find()));
-    // Get.put(CompanyController(auth: Get.find(), repository: Get.find(), appUtils: Get.find()));
   }
 }
