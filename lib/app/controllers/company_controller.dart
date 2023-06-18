@@ -53,7 +53,7 @@ class CompanyController extends GetxController {
         appUtils.showToast(message: "Company cadastrada com sucesso!");
       }
 
-      Get.offAllNamed(AppRoutes.home);
+      Get.offAllNamed(AppRoutes.base);
     } else {
       appUtils.showToast(message: result.message!, isError: true);
     }

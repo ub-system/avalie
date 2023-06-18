@@ -39,7 +39,7 @@ class AssessmentController extends GetxController {
     if (!result.isError) {
       assessment = result.data!;
       appUtils.showToast(message: "Company avaliada com sucesso!");
-      Get.offAllNamed(AppRoutes.home);
+      Get.offAllNamed(AppRoutes.base);
     } else {
       appUtils.showToast(message: result.message!, isError: true);
     }
