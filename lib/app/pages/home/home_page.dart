@@ -52,16 +52,22 @@ class HomePage extends StatelessWidget {
                               controller.loadMoreCompanies();
                             },
                           );
-                        } else {
+                        } else if (controller.hasMoreData) {
                           return ListTile(
-                                title: const Text(
-                                  'Carregar mais',
-                                  style: TextStyle(fontWeight: FontWeight.bold),
+                            title: const Center(
+                              child: Text(
+                                'Carregar mais',
+                                style: TextStyle(
+                                  fontWeight: FontWeight.bold,
                                 ),
-                                onTap: () {
-                                  controller.loadMoreCompanies();
-                                },
+                              ),
+                            ),
+                            onTap: () {
+                              controller.loadMoreCompanies();
+                            },
                           );
+                        } else {
+                          return const SizedBox.shrink();
                         }
                       },
                     );

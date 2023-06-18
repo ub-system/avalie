@@ -27,6 +27,10 @@ class CompanyController extends GetxController {
   AssessmentModel assessment = AssessmentModel();
   RxList<CompanyModel> listPost = RxList<CompanyModel>([]);
   int currentPage = 0;
+  int companiesPerPage = 5; // Define o número de empresas por página
+
+  bool get hasMoreData =>
+      listPost.length % companiesPerPage == 0; // Verifica se há mais dados para carregar
 
   @override
   void onInit() {
@@ -41,16 +45,17 @@ class CompanyController extends GetxController {
     // print(user);
     String token = auth.user.token!;
 
-    ApiResult<CompanyModel> result = await repository.insert(token: token ,company: company);
+    ApiResult<CompanyModel> result = await repository.insert(token: token, company: company);
 
     if (!result.isError) {
       company = result.data!;
       assessment.company = company;
       assessment.user = auth.user;
 
-      ApiResult<AssessmentModel> resultAssessment = await assessmentRepository.insert(token: token, assessment: assessment);
+      ApiResult<AssessmentModel> resultAssessment =
+          await assessmentRepository.insert(token: token, assessment: assessment);
 
-      if(!resultAssessment.isError){
+      if (!resultAssessment.isError) {
         assessment = resultAssessment.data!;
         appUtils.showToast(message: "Company cadastrada com sucesso!");
       }
@@ -73,7 +78,8 @@ class CompanyController extends GetxController {
 
     String token = auth.user.token!;
 
-    ApiResult<List<CompanyModel>> result = await repository.getAll(token: token, filter: filter, page: currentPage);
+    ApiResult<List<CompanyModel>> result =
+        await repository.getAll(token: token, filter: filter, page: currentPage);
     if (!result.isError) {
       if (currentPage == 0) {
         listPost.assignAll(result.data!);
