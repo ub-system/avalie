@@ -1,11 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:get/get.dart';
-
-import '../../controllers/company_controller.dart';
 import '../config/app_colors.dart';
 
 class SearchWidget extends StatelessWidget {
-  SearchWidget({Key? key, required this.onSearch}) : super(key: key);
+  const SearchWidget({Key? key, required this.onSearch}) : super(key: key);
 
   final Function(String) onSearch;
 
