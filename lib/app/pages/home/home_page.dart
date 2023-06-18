@@ -42,10 +42,27 @@ class HomePage extends StatelessWidget {
                   } else {
                     return ListView.builder(
                       physics: const BouncingScrollPhysics(),
-                      itemCount: controller.listPost.length,
+                      itemCount: controller.listPost.length + 1,
                       itemBuilder: (BuildContext context, int index) {
-                        CompanyModel model = controller.listPost[index];
-                        return CompanyWidget(model: model);
+                        if (index < controller.listPost.length) {
+                          CompanyModel model = controller.listPost[index];
+                          return CompanyWidget(
+                            model: model,
+                            onLoadMore: () {
+                              controller.loadMoreCompanies();
+                            },
+                          );
+                        } else {
+                          return ListTile(
+                                title: const Text(
+                                  'Carregar mais',
+                                  style: TextStyle(fontWeight: FontWeight.bold),
+                                ),
+                                onTap: () {
+                                  controller.loadMoreCompanies();
+                                },
+                          );
+                        }
                       },
                     );
                   }

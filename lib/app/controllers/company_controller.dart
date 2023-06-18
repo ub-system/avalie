@@ -25,6 +25,8 @@ class CompanyController extends GetxController {
   RxBool isLoading = false.obs;
   CompanyModel company = CompanyModel();
   AssessmentModel assessment = AssessmentModel();
+  RxList<CompanyModel> listPost = RxList<CompanyModel>([]);
+  int currentPage = 0;
 
   @override
   void onInit() {
@@ -61,16 +63,23 @@ class CompanyController extends GetxController {
     isLoading.value = false;
   }
 
-  RxList<CompanyModel> listPost = RxList<CompanyModel>([]);
+  Future loadMoreCompanies() async {
+    currentPage++;
+    await getCompanies("");
+  }
 
   Future getCompanies(String? filter) async {
     isLoading.value = true;
 
     String token = auth.user.token!;
 
-    ApiResult<List<CompanyModel>> result = await repository.getAll(token: token, filter: filter);
+    ApiResult<List<CompanyModel>> result = await repository.getAll(token: token, filter: filter, page: currentPage);
     if (!result.isError) {
-      listPost.assignAll(result.data!);
+      if (currentPage == 0) {
+        listPost.assignAll(result.data!);
+      } else {
+        listPost.addAll(result.data!);
+      }
     } else {
       appUtils.showToast(message: result.message!, isError: true);
     }

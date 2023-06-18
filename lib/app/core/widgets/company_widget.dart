@@ -8,15 +8,16 @@ class CompanyWidget extends StatelessWidget {
   const CompanyWidget({
     Key? key,
     required this.model,
+    required this.onLoadMore,
   }) : super(key: key);
 
   final CompanyModel model;
+  final VoidCallback onLoadMore;
 
   @override
   Widget build(BuildContext context) {
     return GestureDetector(
       onTap: () {
-        // Navegue para a próxima página aqui
         Navigator.push(
           context,
           MaterialPageRoute(

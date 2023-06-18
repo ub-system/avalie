@@ -14,7 +14,7 @@ class CompanyRepository {
     required this.appUtils,
   });
 
-  Future<ApiResult<List<CompanyModel>>> getAll({required String token, String? filter}) async {
+  Future<ApiResult<List<CompanyModel>>> getAll({required String token, String? filter, int page = 0}) async {
     const String endpoint = "${Url.base}/company";
     final response = await httpManager.request(
       url: endpoint,
@@ -24,6 +24,7 @@ class CompanyRepository {
       },
       body: {
         'filter': filter,
+        'page': page.toString(),
       },
     );
 
