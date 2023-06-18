@@ -66,6 +66,8 @@ class InfoCompanyPage extends StatelessWidget {
                             icon: Icons.location_city,
                             label: 'Cidade: ${companyModel.city}'),
 
+                        const SliderExample(),
+
                         // Nota
                         // TextFieldWidget(
                         //   controller: noteTExtController,
