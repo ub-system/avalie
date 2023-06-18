@@ -3,6 +3,7 @@ import 'package:get/get.dart';
 
 import '../../controllers/assessment_controller.dart';
 import '../../core/config/app_colors.dart';
+import '../../core/widgets/slider_assessment_widget.dart';
 import '../../core/widgets/text_field_widget.dart';
 import '../../models/company_model.dart';
 
@@ -20,7 +21,7 @@ class InfoCompanyPage extends StatelessWidget {
   //final controllerCompany = Get.find<CompanyController>();
   final controller = Get.find<AssessmentController>();
 
- @override
+  @override
   Widget build(BuildContext context) {
     final size = MediaQuery.of(context).size;
     // Use as informações do CompanyModel aqui
@@ -49,39 +50,39 @@ class InfoCompanyPage extends StatelessWidget {
                         TextFieldWidget(
                           controller: nameTExtController,
                           icon: Icons.business,
-                          label: 'Name: ${companyModel.name}',
+                          label: 'Nome: ${companyModel.name}',
                         ),
 
                         // Ramo
                         TextFieldWidget(
                           controller: branchTExtController,
                           icon: Icons.business_center_outlined,
-                          label: 'Branch: ${companyModel.branch}',
+                          label: 'Ramo: ${companyModel.branch}',
                         ),
 
                         // Cidade
                         TextFieldWidget(
-                          controller: cityTExtController,
-                          icon: Icons.location_city,
-                          label: 'City: ${companyModel.city}'
-                        ),
+                            controller: cityTExtController,
+                            icon: Icons.location_city,
+                            label: 'Cidade: ${companyModel.city}'),
 
                         // Nota
-                        TextFieldWidget(
-                          controller: noteTExtController,
-                          icon: Icons.assessment,
-                          label: 'Note',
-                          textInputType: TextInputType.number,
-                          onSaved: (value) {
-                            controller.assessment.note = int.tryParse(value!);
-                            controller.assessment.company = companyModel;
-                          },
-                        ),
+                        // TextFieldWidget(
+                        //   controller: noteTExtController,
+                        //   icon: Icons.assessment,
+                        //   label: 'Note',
+                        //   textInputType: TextInputType.number,
+                        //   onSaved: (value) {
+                        //     controller.assessment.note = int.tryParse(value!);
+                        //     controller.assessment.company = companyModel;
+                        //   },
+                        // ),
 
                         // Botão de entrar
                         SizedBox(
                           height: 50,
-                          child: GetX<AssessmentController>(builder: (controller) {
+                          child:
+                              GetX<AssessmentController>(builder: (controller) {
                             return ElevatedButton(
                               style: ElevatedButton.styleFrom(
                                 backgroundColor: AppColors.primary,
