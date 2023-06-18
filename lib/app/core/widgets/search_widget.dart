@@ -50,6 +50,8 @@ class SearchWidget extends StatelessWidget {
                       String searchTerm = searchController.text.trim();
                       if (searchTerm.isNotEmpty) {
                         onSearch(searchTerm);
+                      }else{
+                        onSearch("");
                       }
                     },
                   ),
