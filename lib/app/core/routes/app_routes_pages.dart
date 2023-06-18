@@ -34,7 +34,10 @@ abstract class AppPages {
     GetPage(
       name: AppRoutes.home,
       page: () => HomePage(),
-      binding: AssessmentBinding(),
+      bindings: [
+        AssessmentBinding(),
+        CompanyBinding(),
+      ]
     ),
     GetPage(
       name: AppRoutes.registerCompany,
