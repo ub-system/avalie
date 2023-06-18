@@ -10,53 +10,52 @@ class SearchWidget extends StatelessWidget {
   Widget build(BuildContext context) {
     final TextEditingController searchController = TextEditingController();
 
-    return Card(
-      child: Padding(
-        padding: const EdgeInsets.symmetric(horizontal: 25),
-        child: Column(
-          children: [
-            Container(
-              padding: const EdgeInsets.symmetric(horizontal: 15),
-              decoration: BoxDecoration(
-                color: AppColors.backgroundComponent,
-                borderRadius: BorderRadius.circular(12),
-              ),
-              child: Row(
-                children: [
-                  const SizedBox(width: 10),
-                  Expanded(
-                    child: TextField(
-                      controller: searchController,
-                      decoration: const InputDecoration(
-                        contentPadding: EdgeInsets.all(0),
-                        border: InputBorder.none,
-                        hintText: 'Buscar empresa',
-                        hintStyle: TextStyle(
-                          color: AppColors.secundaryText,
-                        ),
+    return Padding(
+      padding: const EdgeInsets.symmetric(horizontal: 30),
+      child: Column(
+        children: [
+          Container(
+            padding: const EdgeInsets.symmetric(horizontal: 15),
+            decoration: BoxDecoration(
+              color: AppColors.backgroundComponent,
+              borderRadius: BorderRadius.circular(12),
+            ),
+            child: Row(
+              children: [
+                const SizedBox(width: 10),
+                Expanded(
+                  child: TextField(
+                    controller: searchController,
+                    style: const TextStyle(color: AppColors.primaryText),
+                    decoration: const InputDecoration(
+                      contentPadding: EdgeInsets.all(0),
+                      border: InputBorder.none,
+                      hintText: 'Buscar empresa',
+                      hintStyle: TextStyle(
+                        color: AppColors.secundaryText,
                       ),
                     ),
                   ),
-                  IconButton(
-                    icon: const Icon(
-                      Icons.search,
-                      color: AppColors.secundaryText,
-                      size: 24,
-                    ),
-                    onPressed: () {
-                      String searchTerm = searchController.text.trim();
-                      if (searchTerm.isNotEmpty) {
-                        onSearch(searchTerm);
-                      }else{
-                        onSearch("");
-                      }
-                    },
+                ),
+                IconButton(
+                  icon: const Icon(
+                    Icons.search,
+                    color: AppColors.secundaryText,
+                    size: 24,
                   ),
-                ],
-              ),
+                  onPressed: () {
+                    String searchTerm = searchController.text.trim();
+                    if (searchTerm.isNotEmpty) {
+                      onSearch(searchTerm);
+                    } else {
+                      onSearch("");
+                    }
+                  },
+                ),
+              ],
             ),
-          ],
-        ),
+          ),
+        ],
       ),
     );
   }

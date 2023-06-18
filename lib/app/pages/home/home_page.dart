@@ -1,3 +1,4 @@
+import 'package:avalie/app/core/config/app_colors.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
@@ -20,13 +21,21 @@ class HomePage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        title: const Text('Home Page'),
-      ),
+      backgroundColor: AppColors.background,
+      appBar: AppBar(),
       body: Column(
         children: [
-          SearchWidget(
-            onSearch: searchCompanies,
+          Padding(
+            padding: const EdgeInsets.only(top: 16.0, bottom: 16),
+            child: Row(
+              children: [
+                Expanded(
+                  child: SearchWidget(
+                    onSearch: searchCompanies,
+                  ),
+                ),
+              ],
+            ),
           ),
           Expanded(
             child: RefreshIndicator(
@@ -56,9 +65,11 @@ class HomePage extends StatelessWidget {
                           return ListTile(
                             title: const Center(
                               child: Text(
-                                'Carregar mais',
+                                'Mostrar mais empresas',
                                 style: TextStyle(
                                   fontWeight: FontWeight.bold,
+                                  color: AppColors.primary,
+                                  decoration: TextDecoration.underline,
                                 ),
                               ),
                             ),
