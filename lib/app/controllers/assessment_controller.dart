@@ -1,6 +1,7 @@
 import 'package:avalie/app/controllers/auth_controller.dart';
 import 'package:avalie/app/models/assessment_model.dart';
 import 'package:avalie/app/repositories/assessment_repository.dart';
+import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
 import '../core/routes/app_routes_pages.dart';
@@ -11,6 +12,12 @@ class AssessmentController extends GetxController {
   final AuthController auth;
   final AssessmentRepository repository;
   final AppUtils appUtils;
+
+  ValueNotifier<double> sliderValue = ValueNotifier<double>(1);
+
+  void updateSliderValue(double value) {
+    sliderValue.value = value;
+  }
 
   AssessmentController({
     required this.auth,
@@ -31,6 +38,7 @@ class AssessmentController extends GetxController {
   Future post() async {
     isLoading.value = true;
 
+    assessment.note = sliderValue.value.toInt();
     assessment.user = auth.user;
     String token = auth.user.token!;
     // print(user);

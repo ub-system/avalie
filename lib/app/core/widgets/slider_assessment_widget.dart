@@ -1,32 +1,34 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 
-import '../config/app_colors.dart';
+import '../../controllers/assessment_controller.dart';
 
-class SliderExample extends StatefulWidget {
-  const SliderExample({Key? key}) : super(key: key);
+class SliderAssessmentWidget extends StatefulWidget {
+  const SliderAssessmentWidget({Key? key}) : super(key: key);
 
   @override
-  _SliderExampleState createState() => _SliderExampleState();
+  _SliderAssessmentWidgetState createState() => _SliderAssessmentWidgetState();
 }
 
-class _SliderExampleState extends State<SliderExample> {
-  double _currentSliderValue = 1;
+class _SliderAssessmentWidgetState extends State<SliderAssessmentWidget> {
+  final AssessmentController controller = Get.find<AssessmentController>();
 
   @override
   Widget build(BuildContext context) {
-    return Slider(
-      value: _currentSliderValue,
-      min: 1,
-      max: 5,
-      divisions: 4,
-      thumbColor: AppColors.secundary,
-      activeColor: AppColors.secundary,
-      inactiveColor: AppColors.primary,
-      label: _currentSliderValue.round().toString(),
-      onChanged: (double value) {
-        setState(() {
-          _currentSliderValue = value;
-        });
+    return ValueListenableBuilder<double>(
+      valueListenable: controller.sliderValue,
+      builder: (context, value, _) {
+        return Slider(
+          value: value,
+          min: 1,
+          max: 5,
+          divisions: 4,
+          onChanged: (double newValue) {
+            setState(() {
+              controller.updateSliderValue(newValue);
+            });
+          },
+        );
       },
     );
   }

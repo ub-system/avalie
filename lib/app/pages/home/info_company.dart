@@ -66,19 +66,7 @@ class InfoCompanyPage extends StatelessWidget {
                             icon: Icons.location_city,
                             label: 'Cidade: ${companyModel.city}'),
 
-                        const SliderExample(),
-
-                        // Nota
-                        // TextFieldWidget(
-                        //   controller: noteTExtController,
-                        //   icon: Icons.assessment,
-                        //   label: 'Note',
-                        //   textInputType: TextInputType.number,
-                        //   onSaved: (value) {
-                        //     controller.assessment.note = int.tryParse(value!);
-                        //     controller.assessment.company = companyModel;
-                        //   },
-                        // ),
+                        const SliderAssessmentWidget(),
 
                         // Botão de entrar
                         SizedBox(
@@ -100,6 +88,7 @@ class InfoCompanyPage extends StatelessWidget {
                                       if (_formKey.currentState!.validate()) {
                                         _formKey.currentState!.save();
 
+                                        controller.assessment.company = companyModel;
                                         controller.post();
                                       }
                                     },
