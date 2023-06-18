@@ -31,14 +31,15 @@ class AssessmentController extends GetxController {
   Future post() async {
     isLoading.value = true;
 
+    assessment.user = auth.user;
     String token = auth.user.token!;
     // print(user);
 
     ApiResult<AssessmentModel> result = await repository.insert(token: token, assessment: assessment);
     if (!result.isError) {
       assessment = result.data!;
-      appUtils.showToast(message: "Company cadastrada com sucesso!");
-      Get.offAllNamed(AppRoutes.login);
+      appUtils.showToast(message: "Company avaliada com sucesso!");
+      Get.offAllNamed(AppRoutes.home);
     } else {
       appUtils.showToast(message: result.message!, isError: true);
     }

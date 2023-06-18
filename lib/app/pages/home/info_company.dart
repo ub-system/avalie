@@ -49,21 +49,21 @@ class InfoCompanyPage extends StatelessWidget {
                         TextFieldWidget(
                           controller: nameTExtController,
                           icon: Icons.business,
-                          label: 'Name $companyModel.name',
+                          label: 'Name: ${companyModel.name}',
                         ),
 
                         // Ramo
                         TextFieldWidget(
                           controller: branchTExtController,
                           icon: Icons.business_center_outlined,
-                          label: 'Branch',
+                          label: 'Branch: ${companyModel.branch}',
                         ),
 
                         // Cidade
                         TextFieldWidget(
                           controller: cityTExtController,
                           icon: Icons.location_city,
-                          label: 'City'+companyModel.city
+                          label: 'City: ${companyModel.city}'
                         ),
 
                         // Nota
@@ -74,6 +74,7 @@ class InfoCompanyPage extends StatelessWidget {
                           textInputType: TextInputType.number,
                           onSaved: (value) {
                             controller.assessment.note = int.tryParse(value!);
+                            controller.assessment.company = companyModel;
                           },
                         ),
 
@@ -103,7 +104,7 @@ class InfoCompanyPage extends StatelessWidget {
                                   ? const CircularProgressIndicator(
                                       backgroundColor: Colors.white)
                                   : const Text(
-                                      'Cadastrar',
+                                      'Avaliar',
                                       style: TextStyle(fontSize: 16),
                                     ),
                             );

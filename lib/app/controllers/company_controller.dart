@@ -45,16 +45,15 @@ class CompanyController extends GetxController {
       company = result.data!;
       assessment.company = company;
       assessment.user = auth.user;
-      appUtils.showToast(message: "Company cadastrada com sucesso!");
 
       ApiResult<AssessmentModel> resultAssessment = await assessmentRepository.insert(token: token, assessment: assessment);
 
       if(!resultAssessment.isError){
         assessment = resultAssessment.data!;
-        appUtils.showToast(message: "Assessment cadastrada com sucesso!");
+        appUtils.showToast(message: "Company cadastrada com sucesso!");
       }
 
-      Get.offAllNamed(AppRoutes.login);
+      Get.offAllNamed(AppRoutes.home);
     } else {
       appUtils.showToast(message: result.message!, isError: true);
     }
