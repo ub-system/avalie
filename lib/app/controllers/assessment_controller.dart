@@ -28,13 +28,6 @@ class AssessmentController extends GetxController {
   RxBool isLoading = false.obs;
   AssessmentModel assessment = AssessmentModel();
 
-  // @override
-  // void onInit() {
-  //   super.onInit();
-
-  //   getCompanies;
-  // }
-
   Future post() async {
     isLoading.value = true;
 
