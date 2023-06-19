@@ -1,5 +1,7 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="eduardo.saalu.unibalsas.edu.br.avalie">
+
+    <uses-permission android:name="android.permission.INTERNET"/>
    <application
         android:label="avalie"
         android:name="${applicationName}"

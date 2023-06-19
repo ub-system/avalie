@@ -6,7 +6,6 @@ class UserModel {
   String? name;
   String? email;
   String? password;
-  bool? isAdmin;
   DateTime? createdAt;
   String? token;
 
@@ -15,7 +14,6 @@ class UserModel {
     this.name,
     this.email,
     this.password,
-    this.isAdmin,
     this.createdAt,
     this.token,
   });
@@ -26,7 +24,6 @@ class UserModel {
       'name': name,
       'email': email,
       'password': password,
-      'is_admin': isAdmin,
       'created_at': createdAt?.millisecondsSinceEpoch,
       'token': token,
     };
@@ -38,7 +35,6 @@ class UserModel {
       name: map['name'],
       email: map['email'],
       password: map['password'],
-      isAdmin: map['isAdmin'],
       createdAt: map['createdAt'] != null ? DateTime.fromMillisecondsSinceEpoch(map['createdAt']) : null,
       token: map['token'],
     );
@@ -56,6 +52,6 @@ class UserModel {
 
   @override
   String toString() {
-    return 'UserModel(id: $id, name: $name, email: $email, password: $password, isAdmin: $isAdmin, createdAt: $createdAt, token: $token)';
+    return 'UserModel(id: $id, name: $name, email: $email, password: $password, createdAt: $createdAt, token: $token)';
   }
 }
