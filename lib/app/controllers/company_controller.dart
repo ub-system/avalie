@@ -8,11 +8,13 @@ import '../core/routes/app_routes_pages.dart';
 import '../core/utils/api_result.dart';
 import '../core/utils/app_utils.dart';
 import '../repositories/company_repository.dart';
+import 'assessment_controller.dart';
 
 class CompanyController extends GetxController {
   final AuthController auth;
   final CompanyRepository repository;
   final AssessmentRepository assessmentRepository;
+  final AssessmentController assessmentController;
   final AppUtils appUtils;
 
   CompanyController({
@@ -20,6 +22,7 @@ class CompanyController extends GetxController {
     required this.repository,
     required this.appUtils,
     required this.assessmentRepository,
+    required this.assessmentController,
   });
 
   RxBool isLoading = false.obs;
@@ -51,6 +54,7 @@ class CompanyController extends GetxController {
       company = result.data!;
       assessment.company = company;
       assessment.user = auth.user;
+      assessment.note = assessmentController.sliderValue.value.toInt();
 
       ApiResult<AssessmentModel> resultAssessment =
           await assessmentRepository.insert(token: token, assessment: assessment);
