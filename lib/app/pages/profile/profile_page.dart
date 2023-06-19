@@ -1,3 +1,4 @@
+import 'package:avalie/app/core/config/app_colors.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
@@ -11,8 +12,8 @@ class ProfilePage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      backgroundColor: AppColors.background,
       appBar: AppBar(
-        title: const Text('Meu Perfil'),
         actions: <Widget>[
           IconButton(
               icon: const Icon(Icons.logout),
@@ -28,6 +29,7 @@ class ProfilePage extends StatelessWidget {
             return const Center(child: CircularProgressIndicator());
           } else {
             return Card(
+              color: AppColors.backgroundComponent,
               margin: const EdgeInsets.all(20.0),
               child: Container(
                 width: double.infinity,
@@ -37,14 +39,26 @@ class ProfilePage extends StatelessWidget {
                   crossAxisAlignment: CrossAxisAlignment.start,
                   mainAxisSize: MainAxisSize.min,
                   children: [
-                    const Text("Nome"),
-                    Text("${controller.user.name}", style: const TextStyle(fontSize: 18.0, fontWeight: FontWeight.bold)),
+                    const Text(
+                      "Nome",
+                      style: TextStyle(color: AppColors.secundaryText),
+                    ),
+                    Text("${controller.user.name}",
+                        style: const TextStyle(
+                            fontSize: 18.0,
+                            fontWeight: FontWeight.bold,
+                            color: AppColors.primaryText)),
                     const SizedBox(height: 16.0),
-                    const Text("E-mail"),
-                    Text("${controller.user.email}", style: const TextStyle(fontSize: 18.0, fontWeight: FontWeight.bold)),
+                    const Text(
+                      "E-mail",
+                      style: TextStyle(color: AppColors.secundaryText),
+                    ),
+                    Text("${controller.user.email}",
+                        style: const TextStyle(
+                            fontSize: 18.0,
+                            fontWeight: FontWeight.bold,
+                            color: AppColors.primaryText)),
                     const SizedBox(height: 16.0),
-                    const Text("Aqui desde"),
-                    Text("${controller.user.createdAt}", style: const TextStyle(fontSize: 18.0, fontWeight: FontWeight.bold)),
                   ],
                 ),
               ),
