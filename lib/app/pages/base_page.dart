@@ -39,9 +39,9 @@ class _BasePageState extends State<BasePage> {
             });
           },
           type: BottomNavigationBarType.fixed,
-          backgroundColor: AppColors.primary,
-          selectedItemColor: Colors.white,
-          unselectedItemColor: Colors.white.withAlpha(150),
+          backgroundColor: AppColors.background,
+          selectedItemColor: AppColors.primaryText,
+          unselectedItemColor: AppColors.secundaryText,
           items: const [
             BottomNavigationBarItem(
               icon: Icon(Icons.home_outlined),
@@ -49,7 +49,7 @@ class _BasePageState extends State<BasePage> {
             ),
             BottomNavigationBarItem(
               icon: Icon(Icons.business),
-              label: 'Register Company',
+              label: 'Cadastrar Empresa',
             ),
             BottomNavigationBarItem(
               icon: Icon(Icons.person_outline),
