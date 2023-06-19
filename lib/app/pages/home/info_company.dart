@@ -5,7 +5,6 @@ import '../../controllers/assessment_controller.dart';
 import '../../core/config/app_colors.dart';
 import '../../core/functions/assessment_function.dart';
 import '../../core/widgets/slider_assessment_widget.dart';
-import '../../core/widgets/text_field_widget.dart';
 import '../../models/company_model.dart';
 
 class InfoCompanyPage extends StatelessWidget {
