@@ -21,7 +21,7 @@ class _SliderAssessmentWidgetState extends State<SliderAssessmentWidget> {
       builder: (context, value, _) {
         return Slider(
           inactiveColor: AppColors.backgroundComponent,
-          activeColor: AppColors.primary,
+          activeColor: AppColors.secundary,
           value: value,
           min: 1,
           max: 5,

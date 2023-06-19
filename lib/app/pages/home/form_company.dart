@@ -46,7 +46,7 @@ class FormCompanyPage extends StatelessWidget {
                         TextFieldWidget(
                           controller: nameTExtController,
                           icon: Icons.business,
-                          label: 'Name',
+                          label: 'Nome',
                           validator: nameValidator,
                           onSaved: (value) {
                             controllerCompany.company.name = value;
@@ -57,7 +57,7 @@ class FormCompanyPage extends StatelessWidget {
                         TextFieldWidget(
                           controller: branchTExtController,
                           icon: Icons.business_center_outlined,
-                          label: 'Branch',
+                          label: 'Ramo',
                           validator: nameValidator,
                           onSaved: (value) {
                             controllerCompany.company.branch = value;
@@ -68,7 +68,7 @@ class FormCompanyPage extends StatelessWidget {
                         TextFieldWidget(
                           controller: cityTExtController,
                           icon: Icons.location_city,
-                          label: 'City',
+                          label: 'Cidade',
                           validator: namePlaceValidator,
                           onSaved: (value) {
                             controllerCompany.company.city = value;
@@ -77,6 +77,10 @@ class FormCompanyPage extends StatelessWidget {
 
                         // Nota
                         const SliderAssessmentWidget(),
+
+                        const SizedBox(
+                          height: 10,
+                        ),
 
                         // Botão de entrar
                         SizedBox(
