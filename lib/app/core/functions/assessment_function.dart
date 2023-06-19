@@ -1,6 +1,6 @@
 import 'package:avalie/app/models/assessment_model.dart';
 
-class AssessmentFunction{
+class AssessmentFunction {
   static double average(List<AssessmentModel> assessments) {
     if (assessments.isEmpty) {
       return 1.0; // Retorna 0 se o array estiver vazio para evitar divisão por zero.
@@ -12,6 +12,6 @@ class AssessmentFunction{
     }
 
     double average = sum / assessments.length;
-    return double.parse(average.toStringAsFixed(1));;
+    return double.parse(average.toStringAsFixed(1));
   }
 }

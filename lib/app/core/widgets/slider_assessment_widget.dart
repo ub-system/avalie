@@ -1,3 +1,4 @@
+import 'package:avalie/app/core/config/app_colors.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
@@ -19,6 +20,8 @@ class _SliderAssessmentWidgetState extends State<SliderAssessmentWidget> {
       valueListenable: controller.sliderValue,
       builder: (context, value, _) {
         return Slider(
+          inactiveColor: AppColors.backgroundComponent,
+          activeColor: AppColors.primary,
           value: value,
           min: 1,
           max: 5,
