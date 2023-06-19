@@ -5,6 +5,7 @@ import 'package:get/get.dart';
 import '../../controllers/assessment_controller.dart';
 import '../../core/config/app_colors.dart';
 import '../../core/services/validators.dart';
+import '../../core/widgets/slider_assessment_widget.dart';
 import '../../core/widgets/text_field_widget.dart';
 
 class FormCompanyPage extends StatelessWidget {
@@ -22,7 +23,7 @@ class FormCompanyPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final size = MediaQuery.of(context).size;
-    
+
     return Scaffold(
       backgroundColor: AppColors.background,
       body: Container(
@@ -75,15 +76,7 @@ class FormCompanyPage extends StatelessWidget {
                         ),
 
                         // Nota
-                        TextFieldWidget(
-                          controller: noteTExtController,
-                          icon: Icons.assessment,
-                          label: 'Note',
-                          textInputType: TextInputType.number,
-                          onSaved: (value) {
-                            controllerCompany.assessment.note = int.tryParse(value!);
-                          },
-                        ),
+                        const SliderAssessmentWidget(),
 
                         // Botão de entrar
                         SizedBox(
